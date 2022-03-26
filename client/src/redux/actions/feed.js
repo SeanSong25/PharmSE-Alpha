@@ -57,6 +57,108 @@ export const getFeedData = () => async (dispatch) => {
           title: "questionTitle",
         },
       },
+      {
+        id: "answerID",
+        content: "test contet test contet test contet test contet test contet",
+
+        author: {
+          id: "authorID",
+          type: "doctor",
+          name: "Kevin",
+          avatar_url:
+            "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png",
+        },
+
+        question: {
+          id: "questionID",
+          title: "questionTitle",
+        },
+      },
+      {
+        id: "answerID",
+        content: "test contet test contet test contet test contet test contet",
+
+        author: {
+          id: "authorID",
+          type: "doctor",
+          name: "Kevin",
+          avatar_url:
+            "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png",
+        },
+
+        question: {
+          id: "questionID",
+          title: "questionTitle",
+        },
+      },
+      {
+        id: "answerID",
+        content: "test contet test contet test contet test contet test contet",
+
+        author: {
+          id: "authorID",
+          type: "doctor",
+          name: "Kevin",
+          avatar_url:
+            "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png",
+        },
+
+        question: {
+          id: "questionID",
+          title: "questionTitle",
+        },
+      },
+      {
+        id: "answerID",
+        content: "test contet test contet test contet test contet test contet",
+
+        author: {
+          id: "authorID",
+          type: "doctor",
+          name: "Kevin",
+          avatar_url:
+            "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png",
+        },
+
+        question: {
+          id: "questionID",
+          title: "questionTitle",
+        },
+      },
+      {
+        id: "answerID",
+        content: "test contet test contet test contet test contet test contet",
+
+        author: {
+          id: "authorID",
+          type: "doctor",
+          name: "Kevin",
+          avatar_url:
+            "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png",
+        },
+
+        question: {
+          id: "questionID",
+          title: "questionTitle",
+        },
+      },
+      {
+        id: "answerID",
+        content: "test contet test contet test contet test contet test contet",
+
+        author: {
+          id: "authorID",
+          type: "doctor",
+          name: "Kevin",
+          avatar_url:
+            "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png",
+        },
+
+        question: {
+          id: "questionID",
+          title: "questionTitle",
+        },
+      },
     ];
 
     const feedList = datas

@@ -73,12 +73,12 @@ class NavBar extends Component {
           >
             <a className={style.logo} href="/">
               <div>
-                <strong>Phara</strong>
+                <strong>Pharma</strong>
               </div>
             </a>
             <ul className={style.tab}>
               <li className={style.tabItem}>
-                <Link to="/home" className={style.tabLink}>
+                <Link to="/feed" className={style.tabLink}>
                   Feed
                 </Link>
               </li>
