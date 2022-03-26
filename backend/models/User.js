@@ -15,7 +15,10 @@ const userSchema = new Schema({
         type:String,
         required: true
     },
-    refreshToken: String
+    authorId:{
+        type:Number,
+        required: true
+    }
 });
 
 module.exports = mongoos.models("User",userSchema)
