@@ -1,45 +1,144 @@
-import React from "react";
+import React, { useState, useRef } from "react";
+import Form from "react-validation/build/form";
+import Input from "react-validation/build/input";
+import CheckButton from "react-validation/build/button";
 import { Link } from "react-router-dom";
-
-import "./login.css";
-
-export default function SignUpPage() {
+import { isEmail } from "validator";
+import AuthService from "../services/auth.server";
+const required = (value) => {
+	if (!value) {
+		return (
+			<div className="alert alert-danger" role="alert">
+				This field is required!
+			</div>
+		);
+	}
+};
+const validEmail = (value) => {
+	if (!isEmail(value)) {
+		return (
+			<div className="alert alert-danger" role="alert">
+				This is not a valid email.
+			</div>
+		);
+	}
+};
+const vusername = (value) => {
+	if (value.length < 3 || value.length > 20) {
+		return (
+			<div className="alert alert-danger" role="alert">
+				The username must be between 3 and 20 characters.
+			</div>
+		);
+	}
+};
+const vpassword = (value) => {
+	if (value.length < 6 || value.length > 40) {
+		return (
+			<div className="alert alert-danger" role="alert">
+				The password must be between 6 and 40 characters.
+			</div>
+		);
+	}
+};
+const Register = (props) => {
+	const form = useRef();
+	const checkBtn = useRef();
+	const [username, setUsername] = useState("");
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
+	const [successful, setSuccessful] = useState(false);
+	const [message, setMessage] = useState("");
+	const onChangeUsername = (e) => {
+		const username = e.target.value;
+		setUsername(username);
+	};
+	const onChangeEmail = (e) => {
+		const email = e.target.value;
+		setEmail(email);
+	};
+	const onChangePassword = (e) => {
+		const password = e.target.value;
+		setPassword(password);
+	};
+	const handleRegister = (e) => {
+		e.preventDefault();
+		setMessage("");
+		setSuccessful(false);
+		form.current.validateAll();
+		if (checkBtn.current.context._errors.length === 0) {
+			AuthService.register(username, email, password).then(
+				(response) => {
+					setMessage(response.data.message);
+					setSuccessful(true);
+				},
+				(error) => {
+					const resMessage =
+						(error.response && error.response.data && error.response.data.message) ||
+						error.message ||
+						error.toString();
+					setMessage(resMessage);
+					setSuccessful(false);
+				}
+			);
+		}
+	};
 	return (
 		<div className="text-center m-5-auto">
-			<h2>Join us</h2>
-			<h5>Create your personal account</h5>
-			<form className="form" action="/home">
-				<p>
-					<label>Username</label>
-					<br />
-					<input type="text" name="first_name" required />
-				</p>
-				<p>
-					<label>Email address</label>
-					<br />
-					<input type="email" name="email" required />
-				</p>
-				<p>
-					<label>Password</label>
-					<br />
-					<input type="password" name="password" requiredc />
-				</p>
-				<p>
-					<input type="checkbox" name="checkbox" id="checkbox" required />{" "}
-					<span>
-						I agree all statements in{" "}
-						<a href="https://google.com" target="_blank" rel="noopener noreferrer">
-							terms of service
-						</a>
-					</span>
-					.
-				</p>
-				<p>
-					<button id="sub_btn" type="submit">
-						Register
-					</button>
-				</p>
-			</form>
+			<h2>Join us!</h2>
+			<h5>Create a account</h5>
+			<Form className="col-md-3" onSubmit={handleRegister} ref={form}>
+				{!successful && (
+					<div>
+						<div className="form-group mb-3">
+							<label htmlFor="username">Username</label>
+							<Input
+								type="text"
+								className="form-control"
+								name="username"
+								value={username}
+								onChange={onChangeUsername}
+								validations={[required, vusername]}
+							/>
+						</div>
+						<div className="form-group mb-3">
+							<label htmlFor="email">Email</label>
+							<Input
+								type="text"
+								className="form-control"
+								name="email"
+								value={email}
+								onChange={onChangeEmail}
+								validations={[required, validEmail]}
+							/>
+						</div>
+						<div className="form-group mb-3">
+							<label htmlFor="password">Password</label>
+							<Input
+								type="password"
+								className="form-control"
+								name="password"
+								value={password}
+								onChange={onChangePassword}
+								validations={[required, vpassword]}
+							/>
+						</div>
+						<div className="form-group mb-3">
+							<button className="btn btn-primary btn-block">Sign Up</button>
+						</div>
+					</div>
+				)}
+				{message && (
+					<div className="form-group mb-3">
+						<div
+							className={successful ? "alert alert-success" : "alert alert-danger"}
+							role="alert">
+							{message}
+						</div>
+					</div>
+				)}
+				<CheckButton style={{ display: "none" }} ref={checkBtn} />
+			</Form>
 			<footer>
 				<p>
 					<Link to="/">Back to Homepage</Link>.
@@ -47,4 +146,5 @@ export default function SignUpPage() {
 			</footer>
 		</div>
 	);
-}
+};
+export default Register;
