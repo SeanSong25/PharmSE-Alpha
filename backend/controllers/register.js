@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-router.post('/register', (req,res)=>{
+router.post('/register', async (req,res)=>{
     const { username, password } = req.body;
     if (!username || !password) return res.status(400).json({ 'message': 'Username and password are required.' });
 
