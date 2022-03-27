@@ -4,9 +4,12 @@
 	padding: 0;
 	font-family: "Roboto", sans-serif;
 }
-
+html{
+	height: 100vh;
+}
 body {
-	margin: 0 auto;
+	margin-top:0;
+	min-height:100vh;
 }
 
 .App {
@@ -48,13 +51,13 @@ body {
 	to {
 		transform: rotate(360deg);
 	}
-}
+} 
 
 /* --------------------------------------------- */
 
-.m-5-auto {
+/* .m-5-auto {
 	margin: 5rem auto;
-}
+}*/
 
 .primary-button {
 	margin-top: 5rem;
@@ -79,15 +82,15 @@ body {
 	margin-top: 20vh;
 }
 
-/***    Landing Page     ***/
+
 .main-title,
 .main-para {
 	color: #5c7aea;
 	text-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff,
 		-1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
-}
+} 
 
-.main-title {
+ .main-title {
 	padding-top: 10rem;
 	font-size: 5rem;
 	font-family: "Fascinate", cursive;
@@ -121,10 +124,10 @@ body {
 #reg_btn:hover span:after {
 	opacity: 1;
 	right: 0;
-}
+} 
 
 /***    Login Page     ***/
-h2 {
+ h2 {
 	font-weight: 300;
 }
 
@@ -192,4 +195,4 @@ form span {
 
 .home-page-title {
 	color: #222;
-}
+} 
