@@ -72,7 +72,7 @@ export default class Login extends Component {
 			<div className="text-center m-5-auto">
 				<h2>Sign in with us</h2>
 				<Form
-					className="col-md-3"
+					className="col-md-3 form"
 					onSubmit={this.handleLogin}
 					ref={(c) => {
 						this.form = c;
