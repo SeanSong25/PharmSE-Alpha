@@ -1,8 +1,7 @@
-const answer = require ("./Answer.js")
 const mongoose = require('mongoose');
     const Schema = mongoose.Schema;
             
-    const questionSchema = new Schema({
+    const answerSchema = new Schema({
         authorId:{
             type:Number,
             required: true
@@ -15,8 +14,6 @@ const mongoose = require('mongoose');
             type: Number,
             required:true,
         },
-        answers:[answer]
-        
 });
             
-module.exports = mongoose.models("Question",questionSchema)
+module.exports = mongoose.models("Answer",answerSchema)
