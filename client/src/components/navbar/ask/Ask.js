@@ -4,6 +4,8 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { Formik, Field, Form } from "formik";
+import { useNavigate } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
 
 import { connect } from "react-redux";
 import { askQuestion } from "../../../redux/actions/question";
@@ -12,6 +14,8 @@ import style from "./ask.module.scss";
 
 const Ask = (props) => {
   const { openAsk, handleClose, askQuestion } = props;
+
+  let navigate = useNavigate();
 
   return (
     <div>
@@ -32,9 +36,14 @@ const Ask = (props) => {
                 content: "",
               }}
               onSubmit={async (values) => {
+                let questionId = uuidv4();
+                values.questionId = questionId;
                 values.authorId = localStorage.getItem("authorId");
                 console.log(values);
                 askQuestion(values);
+
+                navigate(`/question/${questionId}`);
+                handleClose();
               }}
             >
               {({

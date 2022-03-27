@@ -10,7 +10,7 @@ export default (state = initialState, action) => {
     case SET_QUESTION:
       return {
         ...state,
-        question: action.payload.question,
+        question: action.payload.questionData,
       };
     case ASK_QUESTION:
       return {

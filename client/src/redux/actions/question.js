@@ -120,15 +120,16 @@ export const getQuestionData = (questionID) => async (dispatch) => {
     });
   } else {
     //TODO::finish getQuestion
-    const questionData = await axios
-      .get("http://localhost:3003/getQuestion/" + questionID)
-      .then((res) => {
-        console.log(res);
-        return { res };
-      });
+    const res = await axios.get(
+      "http://localhost:3003/getQuestion/" + questionID
+    );
+
+    let questionData = res.data;
+
+    console.log(questionData);
     dispatch({
       type: SET_QUESTION,
-      payload: questionData,
+      payload: {questionData},
     });
   }
 };
@@ -136,7 +137,7 @@ export const getQuestionData = (questionID) => async (dispatch) => {
 export const askQuestion = (data) => async (dispatch) => {
   const questionData = await axios
     .post("http://localhost:3003/question", {
-      questionId: uuidv4(),
+      questionId: data.questionId,
       authorId: data.authorId,
       content: data.content,
       title: data.title,

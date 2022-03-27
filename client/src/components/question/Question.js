@@ -23,7 +23,8 @@ class Question extends Component {
 
   loadQuestionData = () => {
     if (!this.props.answerData) {
-      this.props.getQuestion();
+      console.log(window.location.pathname.split("/").pop());
+      this.props.getQuestion(window.location.pathname.split("/").pop());
     }
   };
 
@@ -40,8 +41,9 @@ class Question extends Component {
     console.log(questionData);
     let answerList = [];
 
-    if (questionData?.answer?.length > 0) {
-      answerList = this.props.questionData.answer.map((item, i) => {
+    if (questionData !== undefined) {
+      console.log(questionData);
+      answerList = this.props.questionData.answer?.map((item, i) => {
         return <QuestionItem item={item} key={i} />;
       });
 
@@ -88,7 +90,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getQuestion: () => dispatch(getQuestionData()),
+    getQuestion: (data) => dispatch(getQuestionData(data)),
   };
 };
 
