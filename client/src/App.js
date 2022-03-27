@@ -14,29 +14,29 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
 function App() {
-  return (
-    <Provider store={store}>
-      <Router>
-        <div className="App">
-          <Routes>
-            <Route exact path="/" element={<LandingPage />} />
-            <Route exact path="/login" element={<Login />} />
-            <Route exact path="/register" element={<SignUp />} />
-            <Route
-              exact
-              path="/feed"
-              element={
-                <Fragment>
-                  <Navbar />
-                  <Feed />
-                </Fragment>
-              }
-            />
-          </Routes>
-        </div>
-      </Router>
-    </Provider>
-  );
+	return (
+		<Provider store={store}>
+			<Router>
+				<div className="App">
+					<Routes>
+						<Route exact path="/" element={<LandingPage />} />
+						<Route exact path="/login" element={<Login />} />
+						<Route exact path="/register" element={<SignUp />} />
+						<Route
+							exact
+							path="/feed"
+							element={
+								<Fragment>
+									<Navbar />
+									<Feed />
+								</Fragment>
+							}
+						/>
+					</Routes>
+				</div>
+			</Router>
+		</Provider>
+	);
 }
 
 export default App;

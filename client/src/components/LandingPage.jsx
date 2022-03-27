@@ -16,7 +16,7 @@ const HeaderStyle = {
 export default function LandingPage() {
 	return (
 		<header style={HeaderStyle}>
-			<h1 className="main-title text-center">Pharma Connect</h1>
+			<h1 className="main-title text-center text-border margin-top">Pharma Connect</h1>
 			<p className="main-para text-center">Connect with an health advisor online</p>
 			<div className="buttons text-center">
 				<Link to="/login">
