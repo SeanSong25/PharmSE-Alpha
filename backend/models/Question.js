@@ -3,6 +3,10 @@ const mongoose = require('mongoose');
     const Schema = mongoose.Schema;
             
     const questionSchema = new Schema({
+        questionId:{
+            type:String,
+            required: true,
+        },
         authorId:{
             type:Number,
             required: true
