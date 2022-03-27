@@ -1,30 +1,36 @@
-const express = require('express')
-const router = express.Router()
+const express = require("express");
+const User = require("../models/User.js");
+const router = express.Router();
 
-router.post('/register', async (req,res)=>{
-    const { username, password } = req.body;
-    if (!username || !password) return res.status(400).json({ 'message': 'Username and password are required.' });
+router.post("/register", async (req, res) => {
+	const { username, password, email, role } = req.body;
+	console.log(req.body);
+	if (!username || !password || !email || !role)
+		return res.status(400).json({ message: "Username and password are required." });
 
-    // check for duplicate usernames in the db
-    const duplicate = await User.findOne({ username: user }).exec();
-    if (duplicate) return res.sendStatus(409); //Conflict 
+	// check for duplicate usernames in the db
+	const duplicate = await User.findOne({ username: username }).exec();
+	if (duplicate) return res.sendStatus(409); //Conflict
 
-    try {
-        //encrypt the password
-        //const hashedPwd = await bcrypt.hash(pwd, 10);
+	try {
+		//encrypt the password
+		//const hashedPwd = await bcrypt.hash(pwd, 10);
 
-        //create and store the new user
-        const result = await User.create({
-            "username": username,
-            "password": password
-        });
+		//create and store the new user
+		const result = await User.create({
+			username: username,
+			password: password,
+			email: email,
+			role: role,
+			authorId: 1,
+		});
 
-        console.log(result);
+		console.log(result);
 
-        res.status(201).json({ 'success': `New user ${username} created!` });
-    } catch (err) {
-        res.status(500).json({ 'message': err.message });
-    }
-})
+		res.status(201).json({ success: `New user ${username} created!` });
+	} catch (err) {
+		res.status(500).json({ message: err.message });
+	}
+});
 
 module.exports = router;
