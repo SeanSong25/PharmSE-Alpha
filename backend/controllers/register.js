@@ -1,5 +1,6 @@
 const express = require("express");
 const User = require("../models/User.js");
+const Author = require("../models/Author.js");
 const config = require("../config/authConfig");
 const router = express.Router();
 var jwt = require("jsonwebtoken");
@@ -29,13 +30,21 @@ router.post("/register", async (req, res) => {
 			email: email,
 			role: role,
 			authorId: authorId,
-		});
+        });
+        
+        const resultedAuthor = await Author.create({
+            id: authorId,
+            name: username,
+            type: role
+        })
 
 		console.log(result);
-
+        console.log(resultedAuthor);
 		var token = jwt.sign({ id: User.authorId }, config.secret, {
 			expiresIn: 86400, // 24 hours
 		});
+
+
 
 		res.status(201).send({
 			username: username,
