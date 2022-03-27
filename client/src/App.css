@@ -217,13 +217,13 @@ form span {
 	background-color: rgb(0, 0, 0);
 	background-color: rgba(0, 0, 0, 0.4);
 	border: 3px solid rgba(102, 99, 99, 0.144);
-	border-radius: 10px;
+
 	position: absolute;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
 	z-index: 2;
-	width: 80%;
-	min-height: 80vh;
+	width: 100%;
+	min-height: 100vh;
 	padding: 50px 10px;
 }
