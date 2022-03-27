@@ -8,13 +8,13 @@ import Loading from "../../components/loading/Loading";
 import { getQuestionData } from "../../redux/actions/question";
 
 import style from "./question.module.scss";
+import { createPath } from "react-router-dom";
 
 class Question extends Component {
   constructor(props) {
     super(props);
     this.state = {
       openAnswer: false,
-      answerList: [],
     };
   }
 
@@ -22,11 +22,16 @@ class Question extends Component {
     this.loadQuestionData();
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    console.log(this.prevProps);
+    // if (prevProps.state.questionData !== this.state.questionData) {
+    //   this.setState({ answerList: this.props.questionData });
+    //   createPath.log(this.props.questionData);
+    // }
+  }
+
   loadQuestionData = () => {
-    if (!this.props.answerData) {
-      console.log(window.location.pathname.split("/").pop());
-      this.props.getQuestion(window.location.pathname.split("/").pop());
-    }
+    this.props.getQuestion(window.location.pathname.split("/").pop());
   };
 
   handleOpenAnswer = () => {
@@ -40,15 +45,8 @@ class Question extends Component {
   render() {
     const { questionData } = this.props;
     console.log(questionData);
-    let answerList = [];
 
     if (questionData !== undefined) {
-      console.log(questionData);
-      console.log(answerList);
-      answerList = this.props.questionData.answers?.map((item, i) => {
-        return <QuestionItem item={item} key={i} />;
-      });
-
       return (
         <div>
           <div className={style.questionContainer}>
@@ -65,7 +63,11 @@ class Question extends Component {
             </div>
           </div>
           <div className={style.answerContainer}>
-            <div className={style.answerList}>{answerList}</div>
+            <div className={style.answerList}>
+              {this.props.questionData.answers?.map((item, i) => {
+                return <QuestionItem item={item} key={i} />;
+              })}
+            </div>
           </div>
           <Answer
             openAnswer={this.state.openAnswer}

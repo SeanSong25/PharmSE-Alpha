@@ -129,7 +129,7 @@ export const getQuestionData = (questionID) => async (dispatch) => {
     console.log(questionData);
     dispatch({
       type: SET_QUESTION,
-      payload: {questionData},
+      payload: { questionData },
     });
   }
 };
@@ -155,19 +155,19 @@ export const askQuestion = (data) => async (dispatch) => {
 };
 
 export const answerQuestion = (data) => async (dispatch) => {
-  const questionData = await axios
-    .post("http://localhost:3003/answer", {
-      questionId: data.questionId,
-      answerId: uuidv4(),
-      authorId: data.authorId,
-      content: data.content,
-    })
-    .then((res) => {
-      console.log(res);
-      return { res };
-    });
+  const res = await axios.post("http://localhost:3003/answer", {
+    questionId: data.questionId,
+    answerId: uuidv4(),
+    authorId: data.authorId,
+    content: data.content,
+  });
+
+  let questionData = res.data;
+
+  console.log(questionData);
+
   dispatch({
     type: ANSWER_QUESTION,
-    payload: questionData,
+    payload: { questionData },
   });
 };
