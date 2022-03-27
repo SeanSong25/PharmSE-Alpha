@@ -20,11 +20,11 @@ router.post('/answer', async (req,res)=>{
         
         var query = {'questionId': questionId};
 
-        await Question.findOneAndUpdate(query, question, {upsert: true});
+        let returnResult = await Question.findOneAndUpdate(query, question, {upsert: true});
 
 		console.log(result);
 
-		return res.status(201).json(result);
+		return res.status(201).json(returnResult);
 	} catch (err) {
 		return res.status(500).json({ message: err.message });
 	}
