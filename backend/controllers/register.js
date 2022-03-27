@@ -6,7 +6,7 @@ router.post('/register', async (req,res)=>{
     const { username, password, email, roles } = req.body;
     console.log(req.body)
     if (!username || !password || 
-        !email || !roles) return res.status(400).json({ 'message': 'Username and password are required.' });
+        !email || !role) return res.status(400).json({ 'message': 'Username and password are required.' });
 
     // check for duplicate usernames in the db
     const duplicate = await User.findOne({ username: username }).exec();
@@ -15,14 +15,14 @@ router.post('/register', async (req,res)=>{
     try {
         //encrypt the password
         //const hashedPwd = await bcrypt.hash(pwd, 10);
-
+        let id = ObjectId();
         //create and store the new user
         const result = await User.create({
             "username": username,
             "password": password,
             "email" : email,
             "roles" : roles,
-            "authorId" : 1
+            "authorId" : id
         });
 
         console.log(result);
