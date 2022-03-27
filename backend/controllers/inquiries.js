@@ -28,15 +28,18 @@ router.post('/question', async (req,res)=>{
 router.get('/getQuestion', async (req,res)=>{
     let getId = req.params.questionId
 
-    if ( getId = null ) {
-        res.status(200).json(question.find());
+    if ( getId == null ) {
+        const filter = {}
+        const allQuestions = await Question.find(filter);
+        res.status(200).json(allQuestions);
     }
-
-    let question = await Question.findOne({questionId: getId}).exec()
-    if ( question == null ) {
-        res.status(403).json({'message': `There is no ${getId} related!`});
-    } else {
-        res.status(200).json(question);
+    else{
+        let question = await Question.findOne({questionId: getId}).exec()
+        if ( question == null ) {
+            res.status(403).json({'message': `There is no ${getId} related!`});
+        } else {
+            res.status(200).json(question);
+        }
     }
 })
 
