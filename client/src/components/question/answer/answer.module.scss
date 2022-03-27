@@ -13,6 +13,10 @@
     padding: 0 24px 32px;
     margin-top: 24px;
     line-height: 1.7;
+
+    & .form {
+      margin-top: 1rem;
+    }
   }
 
   & .submitButton {

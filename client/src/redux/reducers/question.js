@@ -1,4 +1,4 @@
-import { SET_QUESTION } from "../actions/types";
+import { SET_QUESTION, ASK_QUESTION, ANSWER_QUESTION } from "../actions/types";
 
 const initialState = {
   question: undefined,
@@ -11,6 +11,16 @@ export default (state = initialState, action) => {
       return {
         ...state,
         question: action.payload.question,
+      };
+    case ASK_QUESTION:
+      return {
+        ...state,
+        question: action.payload.question,
+      };
+    case ANSWER_QUESTION:
+      return {
+        ...state,
+        question: state.question.answer.push(action.payload.answer),
       };
     default:
       return state;
