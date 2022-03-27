@@ -25,4 +25,8 @@ router.post('/question', async (req,res)=>{
     }
 })
 
+router.get('/getQuestion/:questionId', (req,res)=>{
+    let questionId = req.params.questionId
+    
+})
 module.exports = router;
