@@ -116,7 +116,7 @@ class NavBar extends Component {
                 </form>
               </div>
               <button
-                className={style.searchButton}
+                className={style.button}
                 ref={(ref) => (this.searchBtn = ref)}
                 onClick={this.handleOpenAsk}
               >

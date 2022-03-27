@@ -31,8 +31,17 @@ class Question extends Component {
       return (
         <div>
           <div className={style.questionContainer}>
-            <div className={style.title}>{questionData.title}</div>
-            <div className={style.content}>{questionData.content}</div>
+            <div className={style.questionInner}>
+              <div className={style.title}>{questionData.title}</div>
+              <div className={style.content}>{questionData.content}</div>
+              <button
+                className={style.button}
+                ref={(ref) => (this.searchBtn = ref)}
+                onClick={this.handleOpenAsk}
+              >
+                Answer
+              </button>
+            </div>
           </div>
           <div className={style.answerContainer}>
             <div className={style.answerList}>{answerList}</div>
