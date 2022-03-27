@@ -8,9 +8,13 @@ router.post("/register", async (req, res) => {
 	if (!username || !password || !email || !role)
 		return res.status(400).json({ message: "Username and password are required." });
 
-	// check for duplicate usernames in the db
-	const duplicate = await User.findOne({ username: username }).exec();
-	if (duplicate) return res.sendStatus(409); //Conflict
+	// Check for duplicate usernames in the db
+	const duplicateUser = await User.findOne({ username: username }).exec();
+	if (duplicateUser) return res.status(409).json({ message: "Username already exists" });
+
+	// Check for duplicate email in db
+	const duplicateEmail = await User.findOne({ email: email }).exec();
+	if (duplicateEmail) return res.status(409).json({ message: "Email already exists" });
 
 	try {
 		//encrypt the password
