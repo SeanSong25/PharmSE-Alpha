@@ -13,7 +13,7 @@ class AuthorInfo extends Component {
       <div className={style.author}>
         <img className={style.avator} src={defaultAvatar} alt="avatar" />
         <span className={style.authorName}>
-          {author.name ? author.name : "Anonymouse User"}
+          {author?.name ? author.name : "Anonymouse User"}
         </span>
       </div>
     );
