@@ -20,6 +20,10 @@ const mongoose = require('mongoose');
             required:true,
         },
         answers:[{
+            questionId:{
+                type:String,
+                required: true,
+            },
             answerId:{
                 type:String,
                 required: true,

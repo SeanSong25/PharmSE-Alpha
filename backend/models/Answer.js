@@ -2,6 +2,10 @@ const mongoose = require('mongoose');
     const Schema = mongoose.Schema;
             
     const answerSchema = new Schema({
+        questionId:{
+            type:String,
+            required: true,
+        },
         answerId:{
             type:String,
             required: true,
@@ -15,7 +19,7 @@ const mongoose = require('mongoose');
             required:true,
         },
         title:{
-            type: Number,
+            type: String,
             required:true,
         },
 });

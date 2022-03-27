@@ -25,6 +25,9 @@ server.use(feedRouter)
 const inquiriesRouter = require('./controllers/inquiries.js')
 server.use(inquiriesRouter)
 
+const answerRouter = require('./controllers/answer.js')
+server.use(answerRouter)
+
 const PORT = process.env.PORT || 3003
 server.listen(PORT, ()=>{
     console.log("Server is up and listening on 3003")
