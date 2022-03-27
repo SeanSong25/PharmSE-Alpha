@@ -6,7 +6,7 @@ const userSchema = new Schema({
         type:String,
         required: true
     },
-    roles:{
+    role:{
         type:String,
         required:true,
         default:1
@@ -20,7 +20,7 @@ const userSchema = new Schema({
         required: true
     },
     authorId:{
-        type:Number,
+        type:String,
         required: true
     }
 });

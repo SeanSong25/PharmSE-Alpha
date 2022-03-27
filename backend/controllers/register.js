@@ -1,9 +1,10 @@
 const express = require('express')
 const User = require('../models/User.js');
+const ObjectID = require('mongodb').ObjectID;
 const router = express.Router()
 
 router.post('/register', async (req,res)=>{
-    const { username, password, email, roles } = req.body;
+    const { username, password, email, role } = req.body;
     console.log(req.body)
     if (!username || !password || 
         !email || !role) return res.status(400).json({ 'message': 'Username and password are required.' });
@@ -15,13 +16,15 @@ router.post('/register', async (req,res)=>{
     try {
         //encrypt the password
         //const hashedPwd = await bcrypt.hash(pwd, 10);
-        let id = ObjectId();
+        
+        id = ObjectID();
+
         //create and store the new user
         const result = await User.create({
             "username": username,
             "password": password,
             "email" : email,
-            "roles" : roles,
+            "role" : role,
             "authorId" : id
         });
 
