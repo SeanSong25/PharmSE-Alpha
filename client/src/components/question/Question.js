@@ -2,12 +2,21 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import QuestionItem from "./QuestionItem";
+import Answer from "./answer/Answer";
 import Loading from "../../components/loading/Loading";
+
 import { getQuestionData } from "../../redux/actions/question";
 
 import style from "./question.module.scss";
 
 class Question extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      openAnswer: false,
+    };
+  }
+
   componentDidMount() {
     this.loadQuestionData();
   }
@@ -16,6 +25,14 @@ class Question extends Component {
     if (!this.props.answerData) {
       this.props.getQuestion();
     }
+  };
+
+  handleOpenAnswer = () => {
+    this.setState({ openAnswer: true });
+  };
+
+  handleCloseAnswer = () => {
+    this.setState({ openAnswer: false });
   };
 
   render() {
@@ -37,7 +54,7 @@ class Question extends Component {
               <button
                 className={style.button}
                 ref={(ref) => (this.searchBtn = ref)}
-                onClick={this.handleOpenAsk}
+                onClick={this.handleOpenAnswer}
               >
                 Answer
               </button>
@@ -46,6 +63,10 @@ class Question extends Component {
           <div className={style.answerContainer}>
             <div className={style.answerList}>{answerList}</div>
           </div>
+          <Answer
+            openAnswer={this.state.openAnswer}
+            handleClose={this.handleCloseAnswer}
+          />
         </div>
       );
     } else {

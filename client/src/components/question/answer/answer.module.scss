@@ -1,0 +1,31 @@
+.box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 536px;
+  box-shadow: 24;
+  background-color: #ffffff;
+  overflow: auto;
+  border-radius: 2px;
+
+  & .boxInner {
+    padding: 0 24px 32px;
+    margin-top: 24px;
+    line-height: 1.7;
+  }
+
+  & .submitButton {
+    position: relative;
+    border-radius: 3px;
+    color: #fff;
+    background-color: #0084ff;
+    padding: 0 14px;
+    border-color: #0084ff;
+    text-align: center;
+    height: 32px;
+    float: right;
+    margin: 18px 0;
+    transition: all 0.2s;
+  }
+}
