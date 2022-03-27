@@ -18,9 +18,10 @@ export default (state = initialState, action) => {
         question: action.payload.question,
       };
     case ANSWER_QUESTION:
+      console.log(action.payload.questionData);
       return {
         ...state,
-        question: state.question.answer.push(action.payload.answer),
+        question: action.payload.questionData,
       };
     default:
       return state;
