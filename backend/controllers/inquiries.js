@@ -38,10 +38,14 @@ router.post('/question', async (req,res)=>{
 
 router.get('/getQuestion', async (req,res)=>{
     let getId = req.params.questionId
+
+    if ( getId = null ) {
+        res.status(200).json(question.find());
+    }
+
     let question = await Question.findOne({questionId: getId}).exec()
     if ( question == null ) {
         res.status(403).json({'message': `There is no ${getId} related!`});
-        res.status(200).json(question.find());
     } else {
         res.status(200).json(question);
     }
