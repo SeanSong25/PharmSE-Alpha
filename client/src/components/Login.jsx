@@ -61,58 +61,67 @@ const Login = (props) => {
 		}
 	};
 	return (
-		<div className="text-center m-5-auto">
-			<h2>Sign in with us</h2>
-			<Form onSubmit={handleLogin} ref={form} className="col-md-3 form">
-				<div className="form-group">
-					<label htmlFor="username">Username</label>
-					<Input
-						type="text"
-						className="form-control"
-						name="username"
-						value={username}
-						onChange={onChangeUsername}
-						validations={[required]}
-					/>
-				</div>
-				<br />
-				<div className="form-group">
-					<label htmlFor="password">Password</label>
-					<Input
-						type="password"
-						className="form-control"
-						name="password"
-						value={password}
-						onChange={onChangePassword}
-						validations={[required]}
-					/>
-				</div>
-				<br />
-				<div className="form-group">
-					<button className="btn btn-dark btn-block" disabled={loading}>
-						{loading && <span className="spinner-border spinner-border-sm"></span>}
-						<span className="btn btn-dark btn-block">Login</span>
-					</button>
-				</div>
-				<br />
-				{message && (
+		<div className="text-center m-5-auto vh-100 background-blurImg">
+			<div className="center-screen background-form">
+				<h2 className="text-white">Sign in with us</h2>
+				<Form onSubmit={handleLogin} ref={form} className="col-md-4 form">
 					<div className="form-group">
-						<div className="alert alert-danger" role="alert">
-							{message}
-						</div>
+						<label htmlFor="username">Username</label>
+						<Input
+							type="text"
+							className="form-control"
+							name="username"
+							value={username}
+							onChange={onChangeUsername}
+							validations={[required]}
+						/>
 					</div>
-				)}
-				<CheckButton style={{ display: "none" }} ref={checkBtn} />
-			</Form>
+					<br />
+					<div className="form-group">
+						<label htmlFor="password">Password</label>
+						<Input
+							type="password"
+							className="form-control"
+							name="password"
+							value={password}
+							onChange={onChangePassword}
+							validations={[required]}
+						/>
+					</div>
+					<br />
+					<div className="form-group">
+						<button className="btn btn-dark btn-block" disabled={loading}>
+							{loading && <span className="spinner-border spinner-border-sm"></span>}
+							<span className="btn btn-dark btn-block">Login</span>
+						</button>
+					</div>
+					<br />
+					{message && (
+						<div className="form-group">
+							<div className="alert alert-danger" role="alert">
+								{message}
+							</div>
+						</div>
+					)}
+					<CheckButton style={{ display: "none" }} ref={checkBtn} />
+				</Form>
 
-			<footer>
-				<p>
-					First time? <Link to="/register">Create an account</Link>.
-				</p>
-				<p>
-					<Link to="/">Back to Homepage</Link>.
-				</p>
-			</footer>
+				<footer>
+					<p className="text-white">
+						First time?{" "}
+						<Link className="text-warning " to="/register">
+							Create an account
+						</Link>
+						.
+					</p>
+					<p>
+						<Link className="text-white" to="/">
+							Back to Homepage
+						</Link>
+						.
+					</p>
+				</footer>
+			</div>
 		</div>
 	);
 };

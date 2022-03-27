@@ -48,6 +48,7 @@ const vpassword = (value) => {
 		);
 	}
 };
+
 const Register = (props) => {
 	const form = useRef();
 	const checkBtn = useRef();
@@ -110,104 +111,111 @@ const Register = (props) => {
 		}
 	};
 	return (
-		<div className="text-center m-5-auto vh-100">
-			<h2>Join us!</h2>
-			<h5>Create a account</h5>
-			<Form className="col-md-3 form " onSubmit={handleRegister} ref={form}>
-				{!successful && (
-					<div>
-						<div className="form-group mb-3">
-							<label htmlFor="username">Username</label>
-							<Input
-								type="text"
-								className="form-control"
-								name="username"
-								value={username}
-								onChange={onChangeUsername}
-								validations={[required, vusername]}
-							/>
-						</div>
-						<div className="form-group mb-3">
-							<label htmlFor="email">Email</label>
-							<Input
-								type="text"
-								className="form-control"
-								name="email"
-								value={email}
-								onChange={onChangeEmail}
-								validations={[required, validEmail]}
-							/>
-						</div>
-						<div className="form-group mb-4">
-							<label htmlFor="password">Password</label>
-							<Input
-								type="password"
-								className="form-control"
-								name="password"
-								value={password}
-								onChange={onChangePassword}
-								validations={[required, vpassword]}
-							/>
-						</div>
-						<div className="form-group mb-3">
-							<FormControl fullWidth sx={{ height: 60 }}>
-								<InputLabel id="demo-simple-select-label">Role</InputLabel>
-								<Select
-									labelId="demo-simple-select-label"
-									id="demo-simple-select"
-									value={role}
-									label="Role"
-									onChange={onChangeRole}>
-									<MenuItem value={"Patient"}>Patient</MenuItem>
-									<MenuItem value={"Doctor"}>Doctor</MenuItem>
-								</Select>
-							</FormControl>
-						</div>
-						{role === "Doctor" && (
+		<div className="text-center m-5-auto vh-100 background-blurImg">
+			<div className="center-screen background-form">
+				<h2 className="text-white">Join us!</h2>
+				<h5 className="text-white">Create a account</h5>
+				<Form className="col-md-4 form " onSubmit={handleRegister} ref={form}>
+					{!successful && (
+						<div>
 							<div className="form-group mb-3">
-								<label>Please update your qualification</label>
-								<Stack direction="row" alignItems="center" spacing={2}>
-									<label htmlFor="contained-button-file">
-										<Input
-											id="contained-button-file"
-											type="file"
-											style={{ display: "None" }}
-										/>
-										<Button
-											variant="contained"
-											component="span"
-											style={{ paddingLeft: "20px" }}>
-											Upload
-										</Button>
-									</label>
-								</Stack>
+								<label htmlFor="username">Username</label>
+								<Input
+									type="text"
+									className="form-control"
+									name="username"
+									value={username}
+									onChange={onChangeUsername}
+									validations={[required, vusername]}
+								/>
 							</div>
-						)}
+							<div className="form-group mb-3">
+								<label htmlFor="email">Email</label>
+								<Input
+									type="text"
+									className="form-control"
+									name="email"
+									value={email}
+									onChange={onChangeEmail}
+									validations={[required, validEmail]}
+								/>
+							</div>
+							<div className="form-group mb-4">
+								<label htmlFor="password">Password</label>
+								<Input
+									type="password"
+									className="form-control"
+									name="password"
+									value={password}
+									onChange={onChangePassword}
+									validations={[required, vpassword]}
+								/>
+							</div>
+							<div className="form-group mb-3">
+								<FormControl fullWidth sx={{ height: 60 }}>
+									<InputLabel id="demo-simple-select-label">Role</InputLabel>
+									<Select
+										labelId="demo-simple-select-label"
+										id="demo-simple-select"
+										value={role}
+										label="Role"
+										onChange={onChangeRole}>
+										<MenuItem value={"Patient"}>Patient</MenuItem>
+										<MenuItem value={"Doctor"}>Doctor</MenuItem>
+									</Select>
+								</FormControl>
+							</div>
+							{role === "Doctor" && (
+								<div className="form-group mb-3">
+									<label>Please update your qualification</label>
+									<Stack direction="row" alignItems="center" spacing={2}>
+										<label htmlFor="contained-button-file">
+											<Input
+												id="contained-button-file"
+												type="file"
+												style={{ display: "None" }}
+											/>
+											<Button
+												variant="contained"
+												component="span"
+												style={{ paddingLeft: "20px" }}>
+												Upload
+											</Button>
+										</label>
+									</Stack>
+								</div>
+							)}
+							<div className="form-group mb-3">
+								<button
+									className="btn btn-dark btn-block"
+									style={{ width: "100%", padding: "10px" }}>
+									Sign Up
+								</button>
+							</div>
+						</div>
+					)}
+					{message && (
 						<div className="form-group mb-3">
-							<button
-								className="btn btn-dark btn-block"
-								style={{ width: "100%", padding: "10px" }}>
-								Sign Up
-							</button>
+							<div
+								className={
+									successful ? "alert alert-success" : "alert alert-danger"
+								}
+								role="alert">
+								{message}
+							</div>
 						</div>
-					</div>
-				)}
-				{message && (
-					<div className="form-group mb-3">
-						<div
-							className={successful ? "alert alert-success" : "alert alert-danger"}
-							role="alert">
-							{message}
-						</div>
-					</div>
-				)}
-				<CheckButton style={{ display: "none" }} ref={checkBtn} />
-			</Form>
-			<footer>
-				<p>
-					<Link to="/">Back to Homepage</Link>.
-				</p>
-			</footer>
+					)}
+					<CheckButton style={{ display: "none" }} ref={checkBtn} />
+				</Form>
+				<footer>
+					<p>
+						<Link className="text-white" to="/">
+							Back to Homepage
+						</Link>
+						.
+					</p>
+				</footer>
+			</div>
 		</div>
 	);
 };
