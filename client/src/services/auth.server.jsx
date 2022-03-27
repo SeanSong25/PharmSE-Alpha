@@ -1,19 +1,30 @@
 import React from "react";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
+import { getNextPageRecData } from "../redux/actions/feed";
 
 const API_URL = "http://localhost:3003/";
+
+const updateLocalStorage = (response) => {
+	if (response.data.accessToken) {
+		localStorage.setItem("accessToken", JSON.stringify(response.data.accessToken));
+		localStorage.setItem("authorId", JSON.stringify(response.data.authorId));
+		localStorage.setItem("username", JSON.stringify(response.data.username));
+		localStorage.setItem("email", JSON.stringify(response.data.email));
+		localStorage.setItem("role", JSON.stringify(response.data.role));
+	}
+};
 
 class AuthServer {
 	login(username, password) {
 		return axios
-			.post(API_URL + "signin", {
+			.post(API_URL + "login", {
 				username,
 				password,
 			})
 			.then((response) => {
 				if (response.data.accessToken) {
-					localStorage.setItem("user", JSON.stringify(response.data));
+					updateLocalStorage(response);
 				}
 				return response.data;
 			});

@@ -89,6 +89,11 @@ const Register = (props) => {
 		if (checkBtn.current.context._errors.length === 0) {
 			AuthService.register(username, email, password, role).then(
 				(response) => {
+					localStorage.setItem("accessToken", JSON.stringify(response.data.accessToken));
+					localStorage.setItem("authorId", JSON.stringify(response.data.authorId));
+					localStorage.setItem("username", JSON.stringify(response.data.username));
+					localStorage.setItem("email", JSON.stringify(response.data.email));
+					localStorage.setItem("role", JSON.stringify(response.data.role));
 					setMessage(response.data.message);
 					setSuccessful(true);
 				},
@@ -152,13 +157,13 @@ const Register = (props) => {
 									value={role}
 									label="Role"
 									onChange={onChangeRole}>
-									<MenuItem value={10}>Patient</MenuItem>
-									<MenuItem value={20}>Doctor</MenuItem>
+									<MenuItem value={"Patient"}>Patient</MenuItem>
+									<MenuItem value={"Doctor"}>Doctor</MenuItem>
 								</Select>
 							</FormControl>
 						</div>
 						<div className="form-group mb-3">
-							<button className="btn btn-primary btn-block">Sign Up</button>
+							<button className="btn btn-dark btn-block">Sign Up</button>
 						</div>
 					</div>
 				)}
