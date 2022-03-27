@@ -12,11 +12,14 @@ router.post('/register', async (req,res)=>{
     try {
         //encrypt the password
         //const hashedPwd = await bcrypt.hash(pwd, 10);
+        
+        id = ObjectId();
 
         //create and store the new user
         const result = await User.create({
             "username": username,
-            "password": password
+            "password": password,
+            "authorId": id
         });
 
         console.log(result);
