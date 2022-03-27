@@ -56,7 +56,7 @@ class FeedItem extends Component {
         <h2 className={style.title} ref={(ref) => (this.titleRef = ref)}>
           <a
             target="_blank"
-            href={`/question/${question.id}/answer/${id}`}
+            href={`/question/${question.id}`}
             rel="noopener noreferrer"
           >
             {titleRes}
