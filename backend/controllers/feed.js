@@ -12,15 +12,17 @@ router.get('/getFeed', async (req,res)=>{
         let ans = []
         for(let i of allQuestions){
             if(i.answers.length>0){
+                let questionId = i.questionId;
+                let title = i.title;
                 let authorId = i.answers[0].authorId;
                 const author = await Author.find({id:authorId})
                 let obj = {
                     id: i.answers[0].answerId,
                     content: i.answers[0].content,
-                    author:{
-                        id:authorId,
-                        type:author.type,
-                        name:author.name
+                    author:author,
+                    question:{
+                        id: questionId,
+                        title: title
                     }
                 }
                 ans.push(obj)
@@ -43,14 +45,17 @@ router.get('/search/:queryString', async (req,res)=>{
         let ans = []
         for(let i of filteredQuestions){
             let authorId = i.answers[0].authorId;
+            let questionId = i.questionId;
+                let title = i.title;
                 const author = await Author.find({id:authorId})
+                console.log(author)
                 let obj = {
                     id: i.answers[0].answerId,
                     content: i.answers[0].content,
-                    author:{
-                        id:authorId,
-                        type:author.type,
-                        name:author.name
+                    author:author,
+                    question:{
+                        id: questionId,
+                        title: title
                     }
                 }
                 ans.push(obj)
