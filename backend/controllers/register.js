@@ -1,12 +1,15 @@
 const express = require('express')
+const User = require('../models/User.js');
 const router = express.Router()
 
 router.post('/register', async (req,res)=>{
-    const { username, password } = req.body;
-    if (!username || !password) return res.status(400).json({ 'message': 'Username and password are required.' });
+    const { username, password, email, roles } = req.body;
+    console.log(req.body)
+    if (!username || !password || 
+        !email || !roles) return res.status(400).json({ 'message': 'Username and password are required.' });
 
     // check for duplicate usernames in the db
-    const duplicate = await User.findOne({ username: user }).exec();
+    const duplicate = await User.findOne({ username: username }).exec();
     if (duplicate) return res.sendStatus(409); //Conflict 
 
     try {
@@ -19,7 +22,9 @@ router.post('/register', async (req,res)=>{
         const result = await User.create({
             "username": username,
             "password": password,
-            "authorId": id
+            "email" : email,
+            "roles" : roles,
+            "authorId" : id
         });
 
         console.log(result);

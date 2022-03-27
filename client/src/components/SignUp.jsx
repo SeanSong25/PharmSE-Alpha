@@ -5,6 +5,11 @@ import CheckButton from "react-validation/build/button";
 import { Link } from "react-router-dom";
 import { isEmail } from "validator";
 import AuthService from "../services/auth.server";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
+
 const required = (value) => {
 	if (!value) {
 		return (
@@ -49,6 +54,7 @@ const Register = (props) => {
 	const [password, setPassword] = useState("");
 	const [successful, setSuccessful] = useState(false);
 	const [message, setMessage] = useState("");
+	const [role, setRole] = useState("");
 	const onChangeUsername = (e) => {
 		const username = e.target.value;
 		setUsername(username);
@@ -60,6 +66,10 @@ const Register = (props) => {
 	const onChangePassword = (e) => {
 		const password = e.target.value;
 		setPassword(password);
+	};
+	const onChangeRole = (e) => {
+		const role = e.target.value;
+		setRole(role);
 	};
 	const handleRegister = (e) => {
 		e.preventDefault();
@@ -87,7 +97,7 @@ const Register = (props) => {
 		<div className="text-center m-5-auto">
 			<h2>Join us!</h2>
 			<h5>Create a account</h5>
-			<Form className="col-md-3" onSubmit={handleRegister} ref={form}>
+			<Form className="col-md-3 form" onSubmit={handleRegister} ref={form}>
 				{!successful && (
 					<div>
 						<div className="form-group mb-3">
@@ -122,6 +132,20 @@ const Register = (props) => {
 								onChange={onChangePassword}
 								validations={[required, vpassword]}
 							/>
+						</div>
+						<div className="form-group mb-3">
+							<FormControl fullWidth sx={{ height: 60 }}>
+								<InputLabel id="demo-simple-select-label">Role</InputLabel>
+								<Select
+									labelId="demo-simple-select-label"
+									id="demo-simple-select"
+									value={role}
+									label="Role"
+									onChange={onChangeRole}>
+									<MenuItem value={10}>Patient</MenuItem>
+									<MenuItem value={20}>Doctor</MenuItem>
+								</Select>
+							</FormControl>
 						</div>
 						<div className="form-group mb-3">
 							<button className="btn btn-primary btn-block">Sign Up</button>
