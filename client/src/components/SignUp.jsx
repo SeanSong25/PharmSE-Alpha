@@ -130,22 +130,6 @@ const Register = (props) => {
 								/>
 							</div>
 							<div className="form-group mb-3">
-<<<<<<< HEAD
-								<div>Please update your qualification</div>
-								<Stack direction="row" alignItems="center" spacing={2}>
-									<label htmlFor="contained-button-file">
-										<Input
-											id="contained-button-file"
-											type="file"
-											style={{ display: "None" }}
-										/>
-										<Button
-											variant="contained"
-											component="div"
-											style={{ paddingLeft: "20px" }}>
-											Upload
-										</Button>
-=======
 								<label htmlFor="email">Email</label>
 								<Input
 									type="text"
@@ -185,7 +169,6 @@ const Register = (props) => {
 								<div className="form-group mb-3">
 									<label className="text-center">
 										Please update your qualification
->>>>>>> 6f527a604cba10c5298b174a95a9458355357825
 									</label>
 									<br />
 									<Stack direction="row" alignItems="center" spacing={2}>
