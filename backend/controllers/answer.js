@@ -13,7 +13,6 @@ router.post('/answer', async (req,res)=>{
             "answerId": answerId,
             "authorId" : authorId,
             "content" : content,
-            "title" : title
         });
 
         let question = await Question.findOne({questionId: questionId});

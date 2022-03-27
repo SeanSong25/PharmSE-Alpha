@@ -36,10 +36,6 @@ const mongoose = require('mongoose');
                 type:String,
                 required:true,
             },
-            title:{
-                type: String,
-                required:true,
-            },
         }]
         
 });
