@@ -3,7 +3,7 @@ const User = require("../models/User.js");
 const router = express.Router();
 
 router.post("/register", async (req, res) => {
-	const { username, password, email, role } = req.body;
+	const { username, password, email, role, authorId } = req.body;
 	console.log(req.body);
 	if (!username || !password || !email || !role)
 		return res.status(400).json({ message: "Username and password are required." });
@@ -22,7 +22,7 @@ router.post("/register", async (req, res) => {
 			password: password,
 			email: email,
 			role: role,
-			authorId: 1,
+			authorId: authorId,
 		});
 
 		console.log(result);
