@@ -16,6 +16,9 @@ server.use(bodyParser.urlencoded({extended:false}))
 const registerRouter = require('./controllers/register.js')
 server.use(registerRouter)
 
+const feedRouter = require('./controllers/feed.js')
+server.use(feedRouter)
+
 //const authRouter = require('./controllers/auth.js')
 //server.use(authRouter)
 
