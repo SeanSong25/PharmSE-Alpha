@@ -1,6 +1,7 @@
-import { getFeed, getMoreRec } from "../../api/feed";
 import { SET_FEED, SET_MORE_FEED } from "../actions/types";
 import { createAnswerByFeed } from "../../models";
+
+import axios from "axios";
 
 export const getFeedData = () => async (dispatch) => {
   if (process.env.REACT_APP_ENV === "dev") {
@@ -163,50 +164,23 @@ export const getFeedData = () => async (dispatch) => {
       payload: { feedList },
     });
   } else {
-    const feedData = await getFeed().then((res) => {
-      const datas = res.data;
+    const feedData = await axios
+      .get("http://localhost:3003/getFeed")
+      .then((res) => {
+        const feedList = res.data;
 
-      const feedList = datas
-        .map((data) => {
-          const targetData = data.target;
-          return createAnswerByFeed(targetData);
-        })
-        .filter((item) => item !== null);
+        // const feedList = datas
+        //   .map((data) => {
+        //     return createAnswerByFeed(data);
+        //   })
+        //   .filter((item) => item !== null);
 
-      const next = res.paging.next;
-      const nextRecUrl = next;
-
-      return { feedList, nextRecUrl };
-    });
+        console.log(feedList);
+        return { feedList };
+      });
     dispatch({
       type: SET_FEED,
       payload: feedData,
     });
   }
-};
-
-export const getNextPageRecData = (param) => async (dispatch) => {
-  const feedData = await getMoreRec(param).then((res) => {
-    const datas = res.data;
-
-    const feedList = datas
-      .map((data) => {
-        const targetData = data.target;
-
-        if (targetData.type === "answer") {
-          return createAnswerByFeed(targetData);
-        }
-        return null;
-      })
-      .filter((item) => item !== null);
-
-    const next = res.paging.next;
-    const nextRecUrl = next;
-
-    return { feedList, nextRecUrl };
-  });
-  dispatch({
-    type: SET_MORE_FEED,
-    payload: feedData,
-  });
 };

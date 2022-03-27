@@ -37,7 +37,7 @@ class Question extends Component {
 
   render() {
     const { questionData } = this.props;
-
+    console.log(questionData);
     let answerList = [];
 
     if (questionData?.answer?.length > 0) {
@@ -66,6 +66,7 @@ class Question extends Component {
           <Answer
             openAnswer={this.state.openAnswer}
             handleClose={this.handleCloseAnswer}
+            questionId={questionData.id}
           />
         </div>
       );

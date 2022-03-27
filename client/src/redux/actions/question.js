@@ -1,12 +1,15 @@
+import { v4 as uuidv4 } from "uuid";
+import axios from "axios";
+
 import { getQuestion } from "../../api/question";
-import { SET_QUESTION } from "./types";
+import { SET_QUESTION, ASK_QUESTION, ANSWER_QUESTION } from "./types";
 import { createQuestionByAnswer } from "../../models";
 
 export const getQuestionData = (questionID) => async (dispatch) => {
   if (process.env.REACT_APP_ENV === "dev") {
     console.log("dev");
     const question = {
-      id: "questionID1",
+      id: "dsdsdas121",
       title: "Question1",
       content: "This is a question content",
       author: {
@@ -117,14 +120,53 @@ export const getQuestionData = (questionID) => async (dispatch) => {
     });
   } else {
     //TODO::finish getQuestion
-    const questionData = await getQuestion(questionID).then((res) => {
-      const question = createQuestionByAnswer(res.data);
-
-      return { question };
-    });
+    const questionData = await axios
+      .get("http://localhost:3003/getQuestion/" + questionID)
+      .then((res) => {
+        console.log(res);
+        return { res };
+      });
     dispatch({
       type: SET_QUESTION,
       payload: questionData,
     });
   }
+};
+
+export const askQuestion = (data) => async (dispatch) => {
+  const questionData = await axios
+    .post("http://localhost:3003/question", {
+      questionId: uuidv4(),
+      authorId: data.authorId,
+      content: data.content,
+      title: data.title,
+      answers: [],
+    })
+    .then((res) => {
+      console.log(res);
+      return { res };
+      console.log("add question ssuccess");
+    });
+  dispatch({
+    type: ASK_QUESTION,
+    payload: questionData,
+  });
+};
+
+export const answerQuestion = (data) => async (dispatch) => {
+  const questionData = await axios
+    .post("http://localhost:3003/answer", {
+      questionId: data.questionId,
+      answerId: uuidv4(),
+      authorId: data.authorId,
+      content: data.content,
+    })
+    .then((res) => {
+      console.log(res);
+      return { res };
+    });
+  dispatch({
+    type: ANSWER_QUESTION,
+    payload: questionData,
+  });
 };
