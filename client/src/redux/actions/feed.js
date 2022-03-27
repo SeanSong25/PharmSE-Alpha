@@ -24,7 +24,7 @@ export const getFeedData = () => async (dispatch) => {
         },
       },
       {
-        id: "answerID",
+        id: "answerID1",
         content: "test contet test contet test contet test contet test contet",
 
         author: {
@@ -36,12 +36,12 @@ export const getFeedData = () => async (dispatch) => {
         },
 
         question: {
-          id: "questionID",
-          title: "questionTitle",
+          id: "questionID1",
+          title: "Question1",
         },
       },
       {
-        id: "answerID",
+        id: "answerID2",
         content: "test contet test contet test contet test contet test contet",
 
         author: {
@@ -53,12 +53,12 @@ export const getFeedData = () => async (dispatch) => {
         },
 
         question: {
-          id: "questionID",
-          title: "questionTitle",
+          id: "questionID1",
+          title: "Question1",
         },
       },
       {
-        id: "answerID",
+        id: "answerID3",
         content: "test contet test contet test contet test contet test contet",
 
         author: {
@@ -70,12 +70,12 @@ export const getFeedData = () => async (dispatch) => {
         },
 
         question: {
-          id: "questionID",
-          title: "questionTitle",
+          id: "questionID1",
+          title: "Question1",
         },
       },
       {
-        id: "answerID",
+        id: "answerID4",
         content: "test contet test contet test contet test contet test contet",
 
         author: {
@@ -87,12 +87,12 @@ export const getFeedData = () => async (dispatch) => {
         },
 
         question: {
-          id: "questionID",
-          title: "questionTitle",
+          id: "questionID2",
+          title: "Question2",
         },
       },
       {
-        id: "answerID",
+        id: "answerID5",
         content: "test contet test contet test contet test contet test contet",
 
         author: {
@@ -104,12 +104,12 @@ export const getFeedData = () => async (dispatch) => {
         },
 
         question: {
-          id: "questionID",
-          title: "questionTitle",
+          id: "questionID2",
+          title: "Question2",
         },
       },
       {
-        id: "answerID",
+        id: "answerID6",
         content: "test contet test contet test contet test contet test contet",
 
         author: {
@@ -121,12 +121,12 @@ export const getFeedData = () => async (dispatch) => {
         },
 
         question: {
-          id: "questionID",
-          title: "questionTitle",
+          id: "questionID3",
+          title: "Question3",
         },
       },
       {
-        id: "answerID",
+        id: "answerID7",
         content: "test contet test contet test contet test contet test contet",
 
         author: {
@@ -138,13 +138,14 @@ export const getFeedData = () => async (dispatch) => {
         },
 
         question: {
-          id: "questionID",
-          title: "questionTitle",
+          id: "questionID4",
+          title: "Question4",
         },
       },
       {
-        id: "answerID",
-        content: "test contet test contet test contet test contet test contet",
+        id: "answerID8",
+        content:
+          "test contet test contet test contet test contet test contettest contet test contet test contet test contet test contettest contet test contet test contet test contet test contet",
 
         author: {
           id: "authorID",
@@ -155,8 +156,8 @@ export const getFeedData = () => async (dispatch) => {
         },
 
         question: {
-          id: "questionID",
-          title: "questionTitle",
+          id: "questionID4",
+          title: "Question 4",
         },
       },
     ];
