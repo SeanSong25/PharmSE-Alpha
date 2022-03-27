@@ -42,8 +42,10 @@ const Ask = (props) => {
                 console.log(values);
                 askQuestion(values);
 
-                navigate(`/question/${questionId}`);
-                handleClose();
+                setTimeout(function () {
+                  navigate(`/question/${questionId}`);
+                  handleClose();
+                }, 1000);
               }}
             >
               {({
