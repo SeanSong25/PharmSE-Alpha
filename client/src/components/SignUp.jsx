@@ -9,7 +9,8 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import { v4 as uuidv4 } from "uuid";
+import Button from "@mui/material/Button";
+import Stack from "@mui/material/Stack";
 
 const required = (value) => {
 	if (!value) {
@@ -89,6 +90,11 @@ const Register = (props) => {
 		if (checkBtn.current.context._errors.length === 0) {
 			AuthService.register(username, email, password, role).then(
 				(response) => {
+					localStorage.setItem("accessToken", JSON.stringify(response.data.accessToken));
+					localStorage.setItem("authorId", JSON.stringify(response.data.authorId));
+					localStorage.setItem("username", JSON.stringify(response.data.username));
+					localStorage.setItem("email", JSON.stringify(response.data.email));
+					localStorage.setItem("role", JSON.stringify(response.data.role));
 					setMessage(response.data.message);
 					setSuccessful(true);
 				},
@@ -104,10 +110,10 @@ const Register = (props) => {
 		}
 	};
 	return (
-		<div className="text-center m-5-auto">
+		<div className="text-center m-5-auto vh-100">
 			<h2>Join us!</h2>
 			<h5>Create a account</h5>
-			<Form className="col-md-3 form" onSubmit={handleRegister} ref={form}>
+			<Form className="col-md-3 form " onSubmit={handleRegister} ref={form}>
 				{!successful && (
 					<div>
 						<div className="form-group mb-3">
@@ -152,13 +158,37 @@ const Register = (props) => {
 									value={role}
 									label="Role"
 									onChange={onChangeRole}>
-									<MenuItem value={10}>Patient</MenuItem>
-									<MenuItem value={20}>Doctor</MenuItem>
+									<MenuItem value={"Patient"}>Patient</MenuItem>
+									<MenuItem value={"Doctor"}>Doctor</MenuItem>
 								</Select>
 							</FormControl>
 						</div>
+						{role === "Doctor" && (
+							<div className="form-group mb-3">
+								<label>Please update your qualification</label>
+								<Stack direction="row" alignItems="center" spacing={2}>
+									<label htmlFor="contained-button-file">
+										<Input
+											id="contained-button-file"
+											type="file"
+											style={{ display: "None" }}
+										/>
+										<Button
+											variant="contained"
+											component="span"
+											style={{ paddingLeft: "20px" }}>
+											Upload
+										</Button>
+									</label>
+								</Stack>
+							</div>
+						)}
 						<div className="form-group mb-3">
-							<button className="btn btn-primary btn-block">Sign Up</button>
+							<button
+								className="btn btn-dark btn-block"
+								style={{ width: "100%", padding: "10px" }}>
+								Sign Up
+							</button>
 						</div>
 					</div>
 				)}
