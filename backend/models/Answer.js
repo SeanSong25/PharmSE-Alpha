@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
             required: true,
         },
         authorId:{
-            type:Number,
+            type:String,
             required: true
         },
         content:{
@@ -20,4 +20,4 @@ const mongoose = require('mongoose');
         },
 });
             
-module.exports = mongoose.models("Answer",answerSchema)
+module.exports = mongoose.model("Answer",answerSchema)

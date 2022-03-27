@@ -19,8 +19,8 @@ server.use(registerRouter)
 //const authRouter = require('./controllers/auth.js')
 //server.use(authRouter)
 
-//const inquiriesRouter = require('./controllers/inquiries.js')
-//server.use(inquiriesRouter)
+const inquiriesRouter = require('./controllers/inquiries.js')
+server.use(inquiriesRouter)
 
 const PORT = process.env.PORT || 3003
 server.listen(PORT, ()=>{

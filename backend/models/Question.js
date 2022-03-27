@@ -1,4 +1,4 @@
-const answer = require ("./Answer.js")
+const Answer = require ("./Answer.js")
 const mongoose = require('mongoose');
     const Schema = mongoose.Schema;
             
@@ -8,7 +8,7 @@ const mongoose = require('mongoose');
             required: true,
         },
         authorId:{
-            type:Number,
+            type:String,
             required: true
         },
         content:{
@@ -16,11 +16,28 @@ const mongoose = require('mongoose');
             required:true,
         },
         title:{
-            type: Number,
+            type: String,
             required:true,
         },
-        answers:[answer]
+        answers:[{
+            answerId:{
+                type:String,
+                required: true,
+            },
+            authorId:{
+                type:String,
+                required: true
+            },
+            content:{
+                type:String,
+                required:true,
+            },
+            title:{
+                type: Number,
+                required:true,
+            },
+        }]
         
 });
             
-module.exports = mongoose.models("Question",questionSchema)
+module.exports = mongoose.model("Question",questionSchema)

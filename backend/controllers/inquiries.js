@@ -3,6 +3,7 @@ const Question = require('../models/Question.js');
 const router = express.Router()
 
 router.post('/question', async (req,res)=>{
+    console.log("entered")
     const { questionId, authorId, content, title, answers } = req.body;
     console.log(req.body)
 
