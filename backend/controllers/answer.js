@@ -24,7 +24,7 @@ router.post('/answer', async (req,res)=>{
 
 		console.log(result);
 
-		return res.status(201).json({ success: `New answer ${answerId} created!` });
+		return res.status(201).json(result);
 	} catch (err) {
 		return res.status(500).json({ message: err.message });
 	}
