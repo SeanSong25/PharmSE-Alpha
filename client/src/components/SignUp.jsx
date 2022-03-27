@@ -1,14 +1,15 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { isEmail } from "validator";
 import AuthService from "../services/auth.server";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import { v4 as uuidv4 } from "uuid";
 
 const required = (value) => {
 	if (!value) {
@@ -71,6 +72,15 @@ const Register = (props) => {
 		const role = e.target.value;
 		setRole(role);
 	};
+
+	// Redirect
+	let navigate = useNavigate();
+	useEffect(() => {
+		if (successful) {
+			return navigate("/feed");
+		}
+	}, [successful]);
+
 	const handleRegister = (e) => {
 		e.preventDefault();
 		setMessage("");
@@ -122,7 +132,7 @@ const Register = (props) => {
 								validations={[required, validEmail]}
 							/>
 						</div>
-						<div className="form-group mb-3">
+						<div className="form-group mb-4">
 							<label htmlFor="password">Password</label>
 							<Input
 								type="password"

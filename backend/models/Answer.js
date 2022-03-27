@@ -2,8 +2,12 @@ const mongoose = require('mongoose');
     const Schema = mongoose.Schema;
             
     const answerSchema = new Schema({
+        answerId:{
+            type:String,
+            required: true,
+        },
         authorId:{
-            type:Number,
+            type:String,
             required: true
         },
         content:{
@@ -16,4 +20,4 @@ const mongoose = require('mongoose');
         },
 });
             
-module.exports = mongoose.models("Answer",answerSchema)
+module.exports = mongoose.model("Answer",answerSchema)

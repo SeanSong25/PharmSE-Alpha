@@ -16,11 +16,14 @@ server.use(bodyParser.urlencoded({extended:false}))
 const registerRouter = require('./controllers/register.js')
 server.use(registerRouter)
 
+const feedRouter = require('./controllers/feed.js')
+server.use(feedRouter)
+
 //const authRouter = require('./controllers/auth.js')
 //server.use(authRouter)
 
-//const inquiriesRouter = require('./controllers/inquiries.js')
-//server.use(inquiriesRouter)
+const inquiriesRouter = require('./controllers/inquiries.js')
+server.use(inquiriesRouter)
 
 const PORT = process.env.PORT || 3003
 server.listen(PORT, ()=>{
