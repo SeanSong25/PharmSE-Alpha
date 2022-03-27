@@ -4,6 +4,7 @@ const cors = require("cors");
 const server = express();
 const bodyParser = require("body-parser");
 const connectDB = require("./config/dbConnect.js");
+const path = require("path");
 
 connectDB();
 server.use(express.json());
@@ -24,14 +25,22 @@ server.use(feedRouter);
 const authRouter = require("./controllers/auth.js");
 server.use(authRouter);
 
-const inquiriesRouter = require('./controllers/inquiries.js')
-server.use(inquiriesRouter)
+const inquiriesRouter = require("./controllers/inquiries.js");
+server.use(inquiriesRouter);
 
-const answerRouter = require('./controllers/answer.js')
-server.use(answerRouter)
+const answerRouter = require("./controllers/answer.js");
+server.use(answerRouter);
 
-const PORT = process.env.PORT || 3003
-server.listen(PORT, ()=>{
-    console.log("Server is up and listening on 3003")
-})
+// Serve static assets if in production
+if (process.env.NODE_ENV === "production") {
+	// Set static folder
+	server.use(express.static("../client/build"));
+	server.get("*", (req, res) => {
+		res.sendFile(path.resolve(__dirname + "/../"), "client", "build", "index.html");
+	});
+}
 
+const PORT = process.env.PORT || 3003;
+server.listen(PORT, () => {
+	console.log("Server is up and listening on 3003");
+});
