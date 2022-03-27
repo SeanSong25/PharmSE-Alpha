@@ -59,24 +59,13 @@ function createAnswerByFeed(data) {
 function createAnswerByQuestion(data) {
   return new Answer({
     id: data.id,
-    type: data.type,
-    // thumbnail: data.thumbnail,
-    excerpt: data.excerpt,
     content: data.content,
-    comment_count: data.comment_count,
-    voteup_count: data.voteup_count || data.vote_count,
-    updated_time: data.updated_time,
 
     author: new Author({
       id: data.author.id,
       type: data.author.type,
       name: data.author.name,
       avatar_url: data.author.avatar_url,
-      headline: data.author.headline,
-    }),
-    question: new Question({
-      id: data.question.id,
-      title: data.question.title,
     }),
   });
 }

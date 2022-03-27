@@ -9,6 +9,7 @@ import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import Navbar from "./components/navbar/Navbar";
 import Feed from "./components/feed/Feed";
+import Question from "./components/question/Question";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
@@ -29,6 +30,15 @@ function App() {
                 <Fragment>
                   <Navbar />
                   <Feed />
+                </Fragment>
+              }
+            />
+            <Route
+              path="/question/:questionID"
+              element={
+                <Fragment>
+                  <Navbar />
+                  <Question />
                 </Fragment>
               }
             />

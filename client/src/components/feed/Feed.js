@@ -15,14 +15,14 @@ class Feed extends Component {
   };
 
   componentDidMount() {
-    this.loadRecommndData();
+    this.loadFeedData();
     window.addEventListener("scroll", this.handleScroll);
   }
   componentWillUnmount() {
     window.removeEventListener("scroll", this.handleScroll);
   }
 
-  loadRecommndData = () => {
+  loadFeedData = () => {
     if (this.props.feedData.length === 0) {
       this.props.getFeed();
     }

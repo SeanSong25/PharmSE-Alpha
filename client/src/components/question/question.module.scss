@@ -1,0 +1,32 @@
+// @import '../common-sass/top-story.module'
+
+.loading {
+  display: inline-flex;
+}
+
+.questionContainer {
+  background-color: #fff;
+
+  & .title {
+    line-height: 50px;
+    color: #121212;
+    padding-top: 12px;
+    font-size: 22px;
+    font-weight: 600;
+  }
+
+  & .content {
+    min-height: 10px;
+    padding: 10px;
+  }
+}
+
+.answerContainer {
+  width: 80%;
+  margin: auto;
+  padding-bottom: 3rem;
+
+  & .answerList {
+    padding-top: 1rem;
+  }
+}

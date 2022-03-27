@@ -13,45 +13,34 @@
 //             url: "",
 //             detail_text: "",
 //         }, data)
-
 //     }
 // }
 
+import { createAnswerByQuestion } from "./Answer";
 class Question {
   constructor(data = {}) {
     Object.assign(
       this,
       {
+        id: "",
         title: "", // question
         author: null, // publisher
-        pic: "",
-        comment_count: "", // number of replies
-        thumbnail: "", // number of agreements
-        url: "", // external link if needed
+        content: "",
+        answer: [],
       },
       data
     );
   }
 }
 
-function createQuestionByRecommend(data) {
+function createQuestionByFeed(data) {
   return new Question({
     id: data.id,
+    title: data.title, // question
+    author: data.author, // publisher
+    content: data.content,
+    answer: createAnswerByQuestion(data.answer),
   });
 }
 
-function createQuestionByHot(data) {
-  const { target, detail_text } = data;
-  return new Question({
-    type: target.type,
-    id: target.id,
-    title: target.title,
-    url: target.url,
-    excerpt: target.excerpt,
-    author: null,
-    detail_text: detail_text,
-    thumbnail: data.children[0].thumbnail,
-  });
-}
-
-export { Question, createQuestionByRecommend, createQuestionByHot };
+export { Question, createQuestionByFeed };
