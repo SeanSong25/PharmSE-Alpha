@@ -25,12 +25,26 @@ router.post('/question', async (req,res)=>{
     }
 })
 
-router.get('/getQuestion/:questionId', async (req,res)=>{
+// router.get('/getQuestion/:questionId', async (req,res)=>{
+//     console.log("entered")
+//     let getId = req.params.questionId
+//     let question = await question.findOne({questionId: getId}).exec()
+//     if ( question == null ) {
+//         res.status(403).json({'message': `There is no ${getId} related!`});
+//     } else {
+//         res.status(200).json(question);
+//     }
+// })
+
+router.get('/getQuestion', async (req,res)=>{
     let getId = req.params.questionId
-    if ( await question.findOne({questionId: getId}).exec() == null ) {
+    let question = await Question.findOne({questionId: getId}).exec()
+    if ( question == null ) {
         res.status(403).json({'message': `There is no ${getId} related!`});
     } else {
-        res.status(200).json({ 'question': await question.findOne({questionId: getId}).exec()})
+        res.status(200).json(question);
     }
 })
+
+
 module.exports = router;
