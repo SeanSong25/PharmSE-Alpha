@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import BackgroundImage from "../assets/background.png";
-import "./login.css";
 
 const HeaderStyle = {
 	width: "100%",
