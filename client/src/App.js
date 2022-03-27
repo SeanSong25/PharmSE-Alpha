@@ -1,10 +1,11 @@
 import React, { Fragment } from "react";
 import { Provider } from "react-redux";
+
 import {
   BrowserRouter as Router,
   Routes,
   Route,
-  useParams,
+  Navigate,
 } from "react-router-dom";
 
 import store from "./redux/store";
@@ -25,9 +26,39 @@ function App() {
       <Router>
         <div className="App">
           <Routes>
-            <Route exact path="/" element={<LandingPage />} />
-            <Route exact path="/login" element={<Login />} />
-            <Route exact path="/register" element={<SignUp />} />
+            <Route
+              exact
+              path="/"
+              element={
+                localStorage.getItem("accessToken") === null ? (
+                  <LandingPage />
+                ) : (
+                  <Navigate replace to="/feed" />
+                )
+              }
+            />
+            <Route
+              exact
+              path="/login"
+              element={
+                localStorage.getItem("accessToken") === null ? (
+                  <Login />
+                ) : (
+                  <Navigate replace to="/feed" />
+                )
+              }
+            />
+            <Route
+              exact
+              path="/register"
+              element={
+                localStorage.getItem("accessToken") === null ? (
+                  <SignUp />
+                ) : (
+                  <Navigate replace to="/feed" />
+                )
+              }
+            />
             <Route
               exact
               path="/feed"
