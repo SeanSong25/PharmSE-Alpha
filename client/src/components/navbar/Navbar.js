@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
+import Ask from "./ask/Ask";
+
 import style from "./navbar.module.scss";
 
 class NavBar extends Component {
@@ -10,6 +12,7 @@ class NavBar extends Component {
       currentIdx: 0,
       needFixed: false,
       totalSearchBar: false,
+      openAsk: false,
     };
   }
 
@@ -56,6 +59,14 @@ class NavBar extends Component {
     inputDom.classList.remove(style.focusedInput);
     inputBtnDom.classList.remove(style.focusedInputBtn);
     searchBtnDom.classList.remove(style.focusedSearchBtn);
+  };
+
+  handleOpenAsk = () => {
+    this.setState({ openAsk: true });
+  };
+
+  handleCloseAsk = () => {
+    this.setState({ openAsk: false });
   };
 
   render() {
@@ -107,6 +118,7 @@ class NavBar extends Component {
               <button
                 className={style.searchButton}
                 ref={(ref) => (this.searchBtn = ref)}
+                onClick={this.handleOpenAsk}
               >
                 Ask
               </button>
@@ -120,6 +132,8 @@ class NavBar extends Component {
             </div>
           </div>
         </div>
+
+        <Ask openAsk={this.state.openAsk} handleClose={this.handleCloseAsk} />
 
         {this.state.needFixed ? (
           <div className={style.navBarStick}></div>
