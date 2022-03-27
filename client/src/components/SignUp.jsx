@@ -165,7 +165,7 @@ const Register = (props) => {
 						</div>
 						{role === "Doctor" && (
 							<div className="form-group mb-3">
-								<label>Please update your qualification</label>
+								<div>Please update your qualification</div>
 								<Stack direction="row" alignItems="center" spacing={2}>
 									<label htmlFor="contained-button-file">
 										<Input
@@ -175,7 +175,7 @@ const Register = (props) => {
 										/>
 										<Button
 											variant="contained"
-											component="span"
+											component="div"
 											style={{ paddingLeft: "20px" }}>
 											Upload
 										</Button>
