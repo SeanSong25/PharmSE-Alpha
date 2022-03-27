@@ -42,7 +42,9 @@ class FeedItem extends Component {
     const titleRes = title || question.title;
     const { name: authorName } = author;
 
-    const excerptSubstr = `${authorName}: ${content.substr(0, 70)}...`;
+    const excerptSubstr = `${
+      authorName ? authorName : "Anonymouse User"
+    }: ${content.substr(0, 70)}...`;
 
     const answerData = { excerptSubstr };
 

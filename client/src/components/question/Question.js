@@ -14,6 +14,7 @@ class Question extends Component {
     super(props);
     this.state = {
       openAnswer: false,
+      answerList: [],
     };
   }
 
@@ -43,7 +44,8 @@ class Question extends Component {
 
     if (questionData !== undefined) {
       console.log(questionData);
-      answerList = this.props.questionData.answer?.map((item, i) => {
+      console.log(answerList);
+      answerList = this.props.questionData.answers?.map((item, i) => {
         return <QuestionItem item={item} key={i} />;
       });
 
@@ -68,7 +70,8 @@ class Question extends Component {
           <Answer
             openAnswer={this.state.openAnswer}
             handleClose={this.handleCloseAnswer}
-            questionId={questionData.id}
+            questionId={questionData.questionId}
+            loadQuestionData={this.loadQuestionData}
           />
         </div>
       );

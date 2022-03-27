@@ -4,6 +4,7 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { Formik, Field, Form } from "formik";
+import { useNavigate } from "react-router-dom";
 
 import { connect } from "react-redux";
 import { answerQuestion } from "../../../redux/actions/question";
@@ -11,7 +12,15 @@ import { answerQuestion } from "../../../redux/actions/question";
 import style from "./answer.module.scss";
 
 const Answer = (props) => {
-  const { openAnswer, handleClose, questionId, answerQuestion } = props;
+  const {
+    openAnswer,
+    handleClose,
+    questionId,
+    answerQuestion,
+    loadQuestionData,
+  } = props;
+
+  let navigate = useNavigate();
 
   return (
     <div>
@@ -35,6 +44,9 @@ const Answer = (props) => {
                 values.authorId = localStorage.getItem("authorId");
                 console.log(values);
                 answerQuestion(values);
+
+                handleClose();
+                loadQuestionData();
               }}
             >
               {({
