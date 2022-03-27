@@ -89,9 +89,9 @@ class NavBar extends Component {
             </a>
             <ul className={style.tab}>
               <li className={style.tabItem}>
-                <Link to="/feed" className={style.tabLink}>
+                <a className={style.tabLink} href="/feed">
                   Feed
-                </Link>
+                </a>
               </li>
             </ul>
             <div className={style.searchBar}>
@@ -106,7 +106,7 @@ class NavBar extends Component {
                     <input
                       className={style.searchinput}
                       type="text"
-                      placeholder="Covid Syndrome?"
+                      placeholder="What is a healthy diet?"
                     />
                     <button
                       className={style.searchIcon}
