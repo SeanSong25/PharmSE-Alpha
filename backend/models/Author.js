@@ -3,17 +3,17 @@ const Schema = mongoose.Schema;
 
 const authorSchema = new Schema({
     id:{
-        type:Number,
+        type:String,
         required: true
     },
     name:{
         type:String,
         required:true,
     },
-    userId:{
-        type: Number,
+    type:{
+        type: String,
         required:true,
     } 
 });
 
-module.exports = mongoos.models("Author",authorSchema)
+module.exports = mongoos.model("Author",authorSchema)
